@@ -5,6 +5,35 @@ Rails.application.routes.draw do
   resource :session
   resource :registration, only: %i[new create]
   resources :passwords, param: :token
+
+  resources :communities do
+    resources :memberships, only: [ :create, :destroy, :update ] do
+      collection do
+        get "pending"
+      end
+      member do
+        patch "approve"
+        patch "reject"
+      end
+    end
+
+    resources :events do
+      resources :event_participants, only: [ :create, :update, :destroy ], path: "participants"
+    end
+
+    resource :finance, only: [ :show, :create, :update ] do
+      collection do
+        get "payments"
+        post "generate_payments"
+      end
+    end
+  end
+
+  resources :payments, only: [] do
+    member do
+      patch "mark_as_paid"
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -8,38 +8,71 @@
               <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
               <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
             </svg>
-            <span class="ms-3">Link menu</span>
+            <span class="ms-3">Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-              <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+          <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-communities" data-collapse-toggle="dropdown-communities">
+            <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path>
             </svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Link with badge</span>
-            <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
-          </a>
-        </li>
-        <li>
-          <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-menu-1" data-collapse-toggle="dropdown-menu-1" aria-expanded="false">
-            <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M4 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4Zm1 2h10v12H5V4Zm2 2v2h2V6H7Zm4 0v2h2V6h-2Zm-4 4v2h2v-2H7Zm4 0v2h2v-2h-2Z" />
-            </svg>
-            <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item="">Link sub menu</span>
+            <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item="">Communities</span>
             <svg sidebar-toggle-item="" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>
           </button>
-          <ul id="dropdown-menu-1" class="py-2 space-y-2 hidden">
+          <ul id="dropdown-communities" class="py-2 space-y-2">
             <li>
-              <a href="#" class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Sub menu 1</a>
+              <a href="/communities" class="flex items-center p-2 text-gray-900 rounded-lg pl-11 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <span class="flex-1 whitespace-nowrap">All Communities</span>
+              </a>
             </li>
             <li>
-              <a href="#" class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Sub menu 2</a>
+              <a href="/communities/new" class="flex items-center p-2 text-gray-900 rounded-lg pl-11 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <span class="flex-1 whitespace-nowrap">Create Community</span>
+              </a>
             </li>
-            <li>
-              <a href="#" class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Sub menu 3</a>
-            </li>
+            <% if Current.user.communities.any? %>
+              <li class="pt-2 pb-1">
+                <span class="pl-11 text-xs text-gray-500 dark:text-gray-400">My Communities</span>
+              </li>
+              <% Current.user.communities.distinct.limit(5).each do |community| %>
+                <li>
+                  <a href="/communities/<%= community.id %>" class="flex items-center p-2 text-gray-900 rounded-lg pl-11 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="flex-1 whitespace-nowrap truncate"><%= community.name %></span>
+                    <% if Current.user.admin_of?(community) %>
+                      <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-0.5 rounded">Admin</span>
+                    <% end %>
+                  </a>
+                </li>
+                <li class="ml-2">
+                  <a href="/communities/<%= community.id %>/events" class="flex items-center p-1 text-gray-600 rounded-lg pl-11 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="flex-1 whitespace-nowrap text-sm">Events</span>
+                  </a>
+                </li>
+                <% if Current.user.admin_of?(community) %>
+                  <li class="ml-2">
+                    <a href="/communities/<%= community.id %>/finance" class="flex items-center p-1 text-gray-600 rounded-lg pl-11 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                      <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="flex-1 whitespace-nowrap text-sm">Finances</span>
+                    </a>
+                  </li>
+                <% end %>
+              <% end %>
+              <% if Current.user.communities.count > 5 %>
+                <li>
+                  <a href="/communities" class="flex items-center p-2 text-gray-900 rounded-lg pl-11 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="flex-1 whitespace-nowrap text-blue-600 dark:text-blue-400 text-sm">View All →</span>
+                  </a>
+                </li>
+              <% end %>
+            <% end %>
           </ul>
         </li>
       </ul>
