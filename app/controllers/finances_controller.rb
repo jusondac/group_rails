@@ -54,23 +54,33 @@ class FinancesController < ApplicationController
     # Get amount from finance settings
     amount = @community.finance_setting.amount
 
+    period = @community.finance_setting.frequency
+    if period == "monthly"
+      # Monthly payments
+      amount = @community.finance_setting.amount
+    elsif period == "weekly"
+      # Weekly payments
+      amount = @community.finance_setting.amount / 4
+    elsif period == "yearly"
+      # Yearly payments
+      amount = @community.finance_setting.amount / 12
+    else
+      redirect_to community_finance_path(@community), alert: "Invalid payment frequency."
+      return
+    end
+
     # Current month due date (last day of current month)
     current_month = Date.today
     due_date = Date.new(current_month.year, current_month.month, -1) # Last day of current month
 
     count = 0
     @community.memberships.approved.each do |membership|
-      # Only create if no payment exists for this month
-      unless membership.payments.where("extract(month from due_date) = ? AND extract(year from due_date) = ?",
-                                      current_month.month, current_month.year).exists?
-        payment = membership.payments.new(
-          amount: amount,
-          due_date: due_date,
-          status: "pending",
-          community: @community
-        )
-        count += 1 if payment.save
-      end
+      payment = membership.payments.new(
+        amount: amount,
+        due_date: due_date,
+        status: "pending"
+      )
+      count += 1 if payment.saved_changes
     end
 
     if count > 0

@@ -19,7 +19,7 @@
     </div>
     <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
       <%= link_to "Back to Finance Settings", community_finance_path(@community), class: "text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium rounded-lg text-sm px-4 py-2" %>
-      <%= link_to "Generate Payments", generate_payments_community_finance_path(@community), method: :post, class: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg", data: { turbo_method: :post, turbo_confirm: "This will generate payments for all members. Continue?" } %>
+      <%= button_to "Generate Period Payments", generate_monthly_payments_community_finance_path(@community), method: :post, class: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg", data: { turbo_method: :post, turbo_confirm: "This will generate payments for all members. Continue?" } %>
     </div>
   </div>
   <!-- Simple Tabs -->
