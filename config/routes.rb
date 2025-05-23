@@ -24,9 +24,11 @@ Rails.application.routes.draw do
     resource :finance, only: [ :show, :create, :update ] do
       collection do
         get "payments"
-        post "generate_payments"
+        post "generate_monthly_payments"
       end
     end
+
+    resources :payments, only: [ :create ]
   end
 
   resources :payments, only: [] do

@@ -121,10 +121,42 @@
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-lg font-semibold dark:text-white">Payment Management</h2>
           <% if @community.has_finance_enabled? %>
-            <%= link_to "Generate Payments", generate_payments_community_finance_path(@community), method: :post, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", data: { turbo_method: :post, turbo_confirm: "This will generate payments for all members. Continue?" } %>
+            <%= button_to "Generate This Month", generate_monthly_payments_community_finance_path(@community), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", data: { turbo_confirm: "This will generate pending payments for all members for this month. Continue?" } %>
           <% end %>
         </div>
         <% if @community.has_finance_enabled? %>
+          <!-- Manual Payment Form for Admins -->
+          <div class="mb-6 p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm">
+            <h3 class="text-md font-semibold mb-3 dark:text-white flex items-center">
+              <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              Add Manual Payment
+            </h3>
+            <%= form_with url: community_payments_path(@community), method: :post, local: true, class: "space-y-4" do |f| %>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <%= f.label :membership_id, "Member", class: "block text-sm font-medium text-gray-700 dark:text-white mb-1" %>
+                  <%= f.select :membership_id, @members.map { |m| [m.user.email_address, m.id] }, {}, class: "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+                </div>
+                <div>
+                  <%= f.label :amount, "Amount ($)", class: "block text-sm font-medium text-gray-700 dark:text-white mb-1" %>
+                  <%= f.number_field :amount, min: 0, step: "0.01", class: "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", required: true, placeholder: "e.g. 25.00" %>
+                </div>
+                <div>
+                  <%= f.label :due_date, "Due Date", class: "block text-sm font-medium text-gray-700 dark:text-white mb-1" %>
+                  <%= f.date_field :due_date, value: Date.today, class: "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", required: true %>
+                </div>
+                <div>
+                  <%= f.label :status, "Status", class: "block text-sm font-medium text-gray-700 dark:text-white mb-1" %>
+                  <%= f.select :status, [["Pending", "pending"], ["Paid", "paid"], ["Overdue", "overdue"]], {}, class: "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+                </div>
+              </div>
+              <div>
+                <%= f.submit "Add Payment", class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+              </div>
+            <% end %>
+          </div>
           <div class="overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

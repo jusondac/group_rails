@@ -45,38 +45,27 @@ class FinancesController < ApplicationController
     @is_admin = Current.user.admin_of?(@community)
   end
 
-  def generate_monthly_payments
+  def generate_payments
     if !@community.has_finance_enabled?
       redirect_to community_finance_path(@community), alert: "Finance settings must be enabled to generate payments."
       return
     end
 
-    # Get amount from finance settings
-    amount = @community.finance_setting.amount
-
-    # Current month due date (last day of current month)
-    current_month = Date.today
-    due_date = Date.new(current_month.year, current_month.month, -1) # Last day of current month
-
-    count = 0
-    @community.memberships.approved.each do |membership|
-      # Only create if no payment exists for this month
-      unless membership.payments.where("extract(month from due_date) = ? AND extract(year from due_date) = ?",
-                                      current_month.month, current_month.year).exists?
-        payment = membership.payments.new(
-          amount: amount,
-          due_date: due_date,
-          status: "pending",
-          community: @community
-        )
-        count += 1 if payment.save
-      end
-    end
+    count = @community.generate_payments
 
     if count > 0
-      redirect_to community_finance_path(@community), notice: "#{count} payments generated for this month."
+      redirect_to payments_community_finance_path(@community), notice: "#{count} payments have been generated for members."
     else
-      redirect_to community_finance_path(@community), alert: "No new payments were generated. All members already have a payment for this month."
+      # Check why no payments were generated
+      if @community.memberships.approved.empty?
+        message = "No approved members found. Add members to the community first."
+      elsif @community.memberships.approved.all? { |m| m.payments.pending.or(m.payments.paid).exists? }
+        message = "No new payments were generated. All members already have pending or paid payments."
+      else
+        message = "No new payments were generated. Please check the logs for more details."
+      end
+
+      redirect_to payments_community_finance_path(@community), alert: message
     end
   end
 
